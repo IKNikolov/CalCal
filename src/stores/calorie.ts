@@ -103,7 +103,7 @@ export const useCalorieStore = defineStore('calorie', () => {
     const goal = authStore.profile?.daily_calorie_goal || 2000
 
     return {
-      date: targetDate,
+      date: targetDate as string,
       goal,
       consumed: totalCalories,
       remaining: goal - totalCalories,

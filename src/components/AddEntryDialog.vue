@@ -104,7 +104,7 @@ async function saveEntry() {
         : aiResponse.value.items.map((item) => item.name).join(', ')
 
     await calorieStore.addEntry({
-      entry_date: new Date().toISOString().split('T')[0],
+      entry_date: new Date().toISOString().split('T')[0] as string,
       food_description: foodDescription,
       total_calories: aiResponse.value.total_calories,
       entry_type: inputType.value,
