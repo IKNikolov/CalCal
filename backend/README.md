@@ -50,11 +50,13 @@ psql -U postgres -d calorie_calculator -f schema.sql
 ### 4. Run the Server
 
 Development mode with auto-reload:
+
 ```bash
 npm run dev
 ```
 
 Production mode:
+
 ```bash
 npm start
 ```
@@ -64,9 +66,11 @@ npm start
 ### Authentication
 
 #### POST `/api/auth/register`
+
 Register a new user.
 
 **Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -75,6 +79,7 @@ Register a new user.
 ```
 
 **Response:**
+
 ```json
 {
   "token": "jwt_token_here",
@@ -87,9 +92,11 @@ Register a new user.
 ```
 
 #### POST `/api/auth/login`
+
 Login existing user.
 
 **Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -100,14 +107,17 @@ Login existing user.
 **Response:** Same as register
 
 #### GET `/api/auth/me`
+
 Get current user profile (requires auth).
 
 **Headers:**
+
 ```
 Authorization: Bearer <token>
 ```
 
 **Response:**
+
 ```json
 {
   "id": 1,
@@ -119,9 +129,11 @@ Authorization: Bearer <token>
 ```
 
 #### PATCH `/api/auth/calorie-goal`
+
 Update daily calorie goal (requires auth).
 
 **Body:**
+
 ```json
 {
   "daily_calorie_goal": 2500
@@ -131,9 +143,11 @@ Update daily calorie goal (requires auth).
 ### Calorie Entries
 
 #### GET `/api/entries?date=YYYY-MM-DD`
+
 Get entries for a specific date (requires auth).
 
 **Response:**
+
 ```json
 [
   {
@@ -153,12 +167,15 @@ Get entries for a specific date (requires auth).
 ```
 
 #### GET `/api/entries/history?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD`
+
 Get entries for a date range (requires auth).
 
 #### POST `/api/entries`
+
 Create new entry (requires auth).
 
 **Body:**
+
 ```json
 {
   "entry_date": "2026-01-19",
@@ -172,9 +189,11 @@ Create new entry (requires auth).
 ```
 
 #### PATCH `/api/entries/:id`
+
 Update entry (requires auth).
 
 **Body:**
+
 ```json
 {
   "food_description": "Updated description",
@@ -183,14 +202,17 @@ Update entry (requires auth).
 ```
 
 #### DELETE `/api/entries/:id`
+
 Delete entry (requires auth).
 
 #### POST `/api/entries/upload`
+
 Upload food image (requires auth).
 
 **Body:** multipart/form-data with `image` field
 
 **Response:**
+
 ```json
 {
   "imageUrl": "http://localhost:3000/uploads/1-1705654321.jpg"
@@ -227,21 +249,25 @@ backend/
 ### Database Management
 
 Connect to PostgreSQL:
+
 ```bash
 psql -U postgres -d calorie_calculator
 ```
 
 View tables:
+
 ```sql
 \dt
 ```
 
 View users:
+
 ```sql
 SELECT id, email, daily_calorie_goal FROM users;
 ```
 
 View entries:
+
 ```sql
 SELECT * FROM calorie_entries ORDER BY created_at DESC LIMIT 10;
 ```
@@ -281,6 +307,7 @@ Before deploying to production:
 9. Use process manager (PM2)
 
 Example with PM2:
+
 ```bash
 npm install -g pm2
 pm2 start server.js --name calorie-api
@@ -288,9 +315,14 @@ pm2 save
 pm2 startup
 ```
 
+```bash
+/root/.nvm/versions/node/v16.19.0/bin/pm2 start server.js --name calcal-api -o ./logs/output.log -e ./logs/error.log
+```
+
 ## Troubleshooting
 
 **Port already in use:**
+
 ```bash
 # Windows
 netstat -ano | findstr :3000
@@ -301,11 +333,13 @@ lsof -ti:3000 | xargs kill
 ```
 
 **Database connection failed:**
+
 - Check PostgreSQL is running
 - Verify credentials in `.env`
 - Ensure database exists
 
 **CORS errors:**
+
 - Verify `FRONTEND_URL` matches frontend origin
 - Check browser console for specific error
 
