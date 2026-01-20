@@ -1,0 +1,18 @@
+{
+  "apps": [{
+    "name": "calcal-api",
+    "script": "server.js",
+    "interpreter": "node",
+    "cwd": "/var/www/calcal.dev.sonicomit.com/backend",
+    "instances": 1,
+    "exec_mode": "fork",
+    "error_file": "logs/error.log",
+    "out_file": "logs/output.log",
+    "merge_logs": true,
+    "autorestart": true,
+    "max_restarts": 10,
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }]
+}
