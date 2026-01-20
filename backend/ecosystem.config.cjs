@@ -2,9 +2,10 @@ module.exports = {
   apps: [{
     name: 'calcal-api',
     script: './server.js',
+    interpreter: 'node',
     instances: 1,
     exec_mode: 'fork',
-    node_args: '--no-warnings',
+    node_args: '',
     env: {
       NODE_ENV: 'production'
     },
